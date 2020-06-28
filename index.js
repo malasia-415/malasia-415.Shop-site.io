@@ -1,8 +1,8 @@
 class Items {
   constructor(){
     this.items = []
-    this.eventListeners()
-    this.getProduct()
+    // this.eventListeners()
+    // this.getProduct()
   }
 }
 
@@ -23,16 +23,14 @@ function getProduct() {
       
     .then(responseJson => {
         let items = responseJson.results
+        let itemList = ""
+
         items.forEach(item => {
-          let id = item.id;
-          let title = item.title;
-          let description = item.description;
-          let price = item.price;
-
-          let newItem = new Items(id, title, description, price);
-
-          main.innerHTML += newItem.renderItem()
+          // let newItem = new Items(id, title, description, price);
+          itemList += `<li data-id=${item.id}>${item.title}, ${item.description}, ${item.price}</li>`
+          
         })
+        $("#items-container").append(itemList);
       })
     
   }

@@ -6,7 +6,7 @@ class Items {
         this.price = price
     }
 
-renderItems() {
+  renderItems() {
      return ` <li data-id=${this.id}>${this.title}, ${this.description}, ${this.price}</li>`
    }
  }
