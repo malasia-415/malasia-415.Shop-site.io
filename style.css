@@ -46,7 +46,23 @@ form {
   width: 47%;
 }
 
-
 .mask-list p {
   margin: 5px 0;
 }
+
+@media screen and (min-width: 768px) {   /* tablet view - 768 and up*/
+  form {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+
+  input[type="submit"] {
+    align-self: center;
+    height: fit-content;
+  }
+
+  body {
+    margin: 0 10%;
+  }
+}  
