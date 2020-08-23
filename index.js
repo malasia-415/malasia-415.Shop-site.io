@@ -19,3 +19,10 @@ function showLoading() {
   $("#items-container").html(img);
 }
 
+
+function displayImages(images) {
+  return images.map(img => {
+    return `<img class="image" src="${img.url_170x135}" />`
+  }).join('')
+}
+
