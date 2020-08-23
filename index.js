@@ -64,4 +64,11 @@ function stats() {
   } 
   stats();
 
-  
+
+function clearForm() {
+  $('#mask-color').val('')
+  $('#mask-keyword').val('')
+  $('#mask-price').val('')
+  $('#mask-material').val('')
+}   
+
