@@ -19,13 +19,11 @@ function showLoading() {
   $("#items-container").html(img);
 }
 
-
 function displayImages(images) {
   return images.map(img => {
     return `<img class="image" src="${img.url_170x135}" />`
   }).join('')
 }
-
 
 function displayMasks(responseJson) {
   let items = responseJson.results
@@ -41,29 +39,29 @@ function displayMasks(responseJson) {
   })
   $("#items-container").html(itemList);
 }
+  
 
-function stats() {
+   function stats() {
     
-  const url = "https://api.smartable.ai/coronavirus/stats/US";
+    const url = "https://api.smartable.ai/coronavirus/stats/US";
 
-  fetch(url, {
-    headers: {
-      "Subscription-Key": "758efda7ac81492daebae5d0886cbd78"
-    } 
-  })
-    .then(response => response.json())
-    .then(responseJson => {
-      let stats = responseJson.totalDeaths.newDeaths
-      let statsList = ""
-      stats.forEach(item => {
-        statsList += `<li data-id=${item.location}><span class ="total_confirmed">${item.totalConfirmedCases}</span> 
-        <br> Newly confirmed: ${item.newlyConfirmedCases} <br> Total daeths: ${item.totalDeaths} <br> <span class="new_deaths">New deaths: ${item.newDeaths}<br></li>`
-      })
+    fetch(url, {
+      headers: {
+        "Subscription-Key": "758efda7ac81492daebae5d0886cbd78"
+      } 
     })
+      .then(response => response.json())
+      .then(responseJson => {
+        let stats = responseJson.totalDeaths.newDeaths
+        let statsList = ""
+        stats.forEach(item => {
+          statsList += `<li data-id=${item.location}><span class ="total_confirmed">${item.totalConfirmedCases}</span> 
+          <br> Newly confirmed: ${item.newlyConfirmedCases} <br> Total daeths: ${item.totalDeaths} <br> <span class="new_deaths">New deaths: ${item.newDeaths}<br></li>`
+        })
+      })
 
-  } 
-  stats();
-
+    } 
+    stats();
 
 function clearForm() {
   $('#mask-color').val('')
@@ -71,4 +69,22 @@ function clearForm() {
   $('#mask-price').val('')
   $('#mask-material').val('')
 }   
+    
 
+function watchForm() {
+    $('form').submit(event => {
+      event.preventDefault();
+      const color = $('#mask-color').val()
+      const keyword = $('#mask-keyword').val()
+      const price = $('#mask-price').val() || 20
+      const material = $('#mask-material').val()
+      clearForm()
+      getMasks(color, keyword, price, material);
+    });
+  }
+
+$(
+  watchForm()
+  // getProduct();
+  // stats();
+)
