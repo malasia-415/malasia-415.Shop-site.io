@@ -5,3 +5,12 @@ body {
 header h1 {
   text-align: center;
 }
+
+header p {
+  font-size: larger;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
