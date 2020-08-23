@@ -42,4 +42,26 @@ function displayMasks(responseJson) {
   $("#items-container").html(itemList);
 }
 
+function stats() {
+    
+  const url = "https://api.smartable.ai/coronavirus/stats/US";
 
+  fetch(url, {
+    headers: {
+      "Subscription-Key": "758efda7ac81492daebae5d0886cbd78"
+    } 
+  })
+    .then(response => response.json())
+    .then(responseJson => {
+      let stats = responseJson.totalDeaths.newDeaths
+      let statsList = ""
+      stats.forEach(item => {
+        statsList += `<li data-id=${item.location}><span class ="total_confirmed">${item.totalConfirmedCases}</span> 
+        <br> Newly confirmed: ${item.newlyConfirmedCases} <br> Total daeths: ${item.totalDeaths} <br> <span class="new_deaths">New deaths: ${item.newDeaths}<br></li>`
+      })
+    })
+
+  } 
+  stats();
+
+  
