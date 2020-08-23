@@ -26,3 +26,20 @@ function displayImages(images) {
   }).join('')
 }
 
+
+function displayMasks(responseJson) {
+  let items = responseJson.results
+  let itemList = ""
+  items.forEach(item => {
+    itemList += `
+    <li class="mask-list">
+      <span class="title"> <a href="${item.url}" target="_blank">${item.title}</a></span> 
+      <p>Made of: ${item.materials}</p> 
+      <p class="price">Price: $${item.price}</p>
+      ${displayImages(item.Images)}
+    </li>`
+  })
+  $("#items-container").html(itemList);
+}
+
+
